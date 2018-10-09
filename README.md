@@ -1,3 +1,3 @@
 # TankBattles
-ESIEA - 3A - Projet C__
+ESIEA - 3A - Projet C <br/>
 *Théo Machon & Sonny Cherubin*
