@@ -18,7 +18,7 @@ void affichage (char * tab, int size) {
 	printf("\n");
 }
 
-int nombre_caracteres_fichier (char * chemin) {
+int taille_fichier (char * chemin) {
 	
 	FILE * fichier = NULL; //creation d'un pointeur vers un fichier
 	fichier = fopen(chemin, "r"); //attribution du fichier que l'on veut ouvrir au pointeur que l'on vient de creer
@@ -39,7 +39,7 @@ int nombre_caracteres_fichier (char * chemin) {
 	while (caractere_lu != EOF); // ... tant que le caractere lu n'est pas nul
 	
 	fclose(fichier); //fermeture du fichier
-	return compteur; //retour sans erreur
+	return compteur-1; //retour sans erreur
 	
 }
 
@@ -68,18 +68,16 @@ void lecture_fichier (char * chemin, char * tab, int taille) {
 
 
 
-/* MAIN */
+/* MAIN *
 
 int main (int argc, char * argv[]) {
 
 	char * fichier = argv[1];
-	int taille = nombre_caracteres_fichier(fichier);
+	int taille = taille_fichier(fichier);
 	printf("%d\n", taille);
 	
 	char texte[taille];
 	lecture_fichier(fichier, texte, taille);
-	printf("%c\n", texte[0]);
-	printf("%c\n", texte[1]);
 	affichage( texte , taille);
 	
 	return 0;
