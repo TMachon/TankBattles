@@ -39,7 +39,7 @@ int main (int argc, char * argv[]) {
 
 	char c, direction="N", canon;
 	int changement = 0;
-	char fichier[] = "tanks/tank2_N_N.txt";
+	char fichier[] = "tanks/tank3_N_N.txt";
 	while (( c = key_pressed()) != 'e') {
 		if (c == 'd') {
 			fichier[12] = 'E';
