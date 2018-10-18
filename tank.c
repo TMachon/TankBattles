@@ -2,55 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* GLOBAL VARIABLES */
-char tank1NN[5][28] = charger_carrosserie ("tanks/tank1_N_N.txt");
-char tank1NO[5][28] = charger_carrosserie ("tanks/tank1_N_O.txt");
-char tank1NE[5][28] = charger_carrosserie ("tanks/tank1_N_E.txt");
-char tank1NS[5][28] = charger_carrosserie ("tanks/tank1_N_S.txt");
-char tank1ON[5][28] = charger_carrosserie ("tanks/tank1_O_N.txt");
-char tank1OO[5][28] = charger_carrosserie ("tanks/tank1_O_O.txt");
-char tank1OE[5][28] = charger_carrosserie ("tanks/tank1_O_E.txt");
-char tank1OS[5][28] = charger_carrosserie ("tanks/tank1_O_S.txt");
-char tank1EN[5][28] = charger_carrosserie ("tanks/tank1_E_N.txt");
-char tank1EO[5][28] = charger_carrosserie ("tanks/tank1_E_O.txt");
-char tank1EE[5][28] = charger_carrosserie ("tanks/tank1_E_E.txt");
-char tank1ES[5][28] = charger_carrosserie ("tanks/tank1_E_S.txt");
-char tank1SN[5][28] = charger_carrosserie ("tanks/tank1_S_N.txt");
-char tank1SO[5][28] = charger_carrosserie ("tanks/tank1_S_O.txt");
-char tank1SE[5][28] = charger_carrosserie ("tanks/tank1_S_E.txt");
-char tank1SS[5][28] = charger_carrosserie ("tanks/tank1_S_S.txt");
-char tank2NN[5][28] = charger_carrosserie ("tanks/tank2_N_N.txt");
-char tank2NO[5][28] = charger_carrosserie ("tanks/tank2_N_O.txt");
-char tank2NE[5][28] = charger_carrosserie ("tanks/tank2_N_E.txt");
-char tank2NS[5][28] = charger_carrosserie ("tanks/tank2_N_S.txt");
-char tank2ON[5][28] = charger_carrosserie ("tanks/tank2_O_N.txt");
-char tank2OO[5][28] = charger_carrosserie ("tanks/tank2_O_O.txt");
-char tank2OE[5][28] = charger_carrosserie ("tanks/tank2_O_E.txt");
-char tank2OS[5][28] = charger_carrosserie ("tanks/tank2_O_S.txt");
-char tank2EN[5][28] = charger_carrosserie ("tanks/tank2_E_N.txt");
-char tank2EO[5][28] = charger_carrosserie ("tanks/tank2_E_O.txt");
-char tank2EE[5][28] = charger_carrosserie ("tanks/tank2_E_E.txt");
-char tank2ES[5][28] = charger_carrosserie ("tanks/tank2_E_S.txt");
-char tank2SN[5][28] = charger_carrosserie ("tanks/tank2_S_N.txt");
-char tank2SO[5][28] = charger_carrosserie ("tanks/tank2_S_O.txt");
-char tank2SE[5][28] = charger_carrosserie ("tanks/tank2_S_E.txt");
-char tank2SS[5][28] = charger_carrosserie ("tanks/tank2_S_S.txt");
-char tank3NN[5][28] = charger_carrosserie ("tanks/tank3_N_N.txt");
-char tank3NO[5][28] = charger_carrosserie ("tanks/tank3_N_O.txt");
-char tank3NE[5][28] = charger_carrosserie ("tanks/tank3_N_E.txt");
-char tank3NS[5][28] = charger_carrosserie ("tanks/tank3_N_S.txt");
-char tank3ON[5][28] = charger_carrosserie ("tanks/tank3_O_N.txt");
-char tank3OO[5][28] = charger_carrosserie ("tanks/tank3_O_O.txt");
-char tank3OE[5][28] = charger_carrosserie ("tanks/tank3_O_E.txt");
-char tank3OS[5][28] = charger_carrosserie ("tanks/tank3_O_S.txt");
-char tank3EN[5][28] = charger_carrosserie ("tanks/tank3_E_N.txt");
-char tank3EO[5][28] = charger_carrosserie ("tanks/tank3_E_O.txt");
-char tank3EE[5][28] = charger_carrosserie ("tanks/tank3_E_E.txt");
-char tank3ES[5][28] = charger_carrosserie ("tanks/tank3_E_S.txt");
-char tank3SN[5][28] = charger_carrosserie ("tanks/tank3_S_N.txt");
-char tank3SO[5][28] = charger_carrosserie ("tanks/tank3_S_O.txt");
-char tank3SE[5][28] = charger_carrosserie ("tanks/tank3_S_E.txt");
-char tank3SS[5][28] = charger_carrosserie ("tanks/tank3_S_S.txt");
+#define NB_L_TANK 5
+#define NB_C_TANK 28
+/*
+#define NB_L_MAP
+#define NB_C_MAP
+*/
 
 /* STRUCT */
 
@@ -78,9 +35,22 @@ struct tank {
 /* FONCTIONS ET PROCEDURES */
 
 char ** charger_carrosserie (char * chemin) {
-	
+	return lecture_ficher_mat(chemin, NB_L_TANK, NB_C_TANK);
 }
 
+/*
+char ** charger_map (char * chemin) {
+	return lecture_ficher_mat(chemin, NB_L_MAP, NB_C_MAP);
+}
+*/
+
+void affecter_carrosserie (tank tank1) {
+	//TODO
+}
+
+void afficher_tank (tank tank1) {
+	//TODO
+}
 
 /* MAIN *
 
