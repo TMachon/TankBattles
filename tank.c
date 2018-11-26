@@ -116,24 +116,86 @@ void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
 	return 0;
 }
 
-void AFFICHAGE_MAT(int NB_L, int NB_C, tank* tank, int posx, int posy, char dir)
+void AFFICHAGE_MAT(int NB_L, int NB_C, tank* tank, int posx, int posy)
 {//Affichage matrice
 	int i, j;
 
-	system("clear");
+	//system("clear");
 	for (i=0; i<NB_L; i++)
 	{
 		for(j=0;j<NB_C;j++) {
 			curseur(1+posx+i, 1+posy+j);
-			if(dir == 'h')
+			if(tank->Direction == 'N')
 				fill_car(tank->carrosserie_h[i][j]);
-			if(dir == 'b')
+			if(tank->Direction == 'S')
 				fill_car(tank->carrosserie_b[i][j]);
-			if(dir == 'd')
+			if(tank->Direction == 'E')
 				fill_car(tank->carrosserie_d[i][j]);
-			if(dir == 'g')
+			if(tank->Direction == 'O')
 				fill_car(tank->carrosserie_g[i][j]);       
 		}
 		
 	}
+}
+
+void effacer_tank(int NB_L, int NB_C, tank* tank, int posx, int posy)
+{//Affichage matrice
+	int i, j;
+
+	//system("clear");
+	for (i=0; i<NB_L; i++)
+	{
+		for(j=0;j<NB_C;j++) {
+			curseur(1+posx+i, 1+posy+j);
+			if(tank->Direction == 'N')
+				fill_car('0');
+			if(tank->Direction == 'S')
+				fill_car('0');
+			if(tank->Direction == 'E')
+				fill_car('0');
+			if(tank->Direction == 'O')
+				fill_car('0');   
+		}
+		
+	}
+}
+
+void deplacer_tank(tank* tank, char dir) {
+	int i, j, NB_L, NB_C;
+
+	switch(dir) {
+		case 'N':
+			NB_L=5;
+			NB_C=10;
+			effacer_tank(NB_L, NB_C, tank, tank->posx, tank->posy);
+			tank->Direction = dir;
+			tank->posx--;
+			AFFICHAGE_MAT(NB_L, NB_C, tank, tank->posx, tank->posy);
+			break;
+		case 'S':
+			NB_L=5;
+			NB_C=11;
+			effacer_tank(NB_L, NB_C, tank, tank->posx, tank->posy);
+			tank->Direction = dir;
+			tank->posx++;
+			AFFICHAGE_MAT(NB_L, NB_C, tank,tank->posx, tank->posy);
+			break;
+		case 'E':
+			NB_L=4;
+			NB_C=12;
+			effacer_tank(NB_L, NB_C, tank, tank->posx, tank->posy);
+			tank->Direction = dir;
+			tank->posy++;
+			AFFICHAGE_MAT(NB_L, NB_C, tank,tank->posx, tank->posy);
+			break;
+		case 'O':
+			NB_L=4;
+			NB_C=12;
+			effacer_tank(NB_L, NB_C, tank, tank->posx, tank->posy);
+			tank->Direction = dir;
+			tank->posy--;
+			AFFICHAGE_MAT(NB_L, NB_C, tank,tank->posx, tank->posy);
+			break;
+	}
+
 }

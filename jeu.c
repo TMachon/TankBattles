@@ -58,20 +58,19 @@ int main(int argc, char ** argv)
 		switch(i){
 
 			case 'z':
-			tank->posx--;
-			AFFICHAGE_MAT(5,10, tank, tank->posx, tank->posy, 'h');
-			break;
+				deplacer_tank(tank, 'N');
+				break;
 			case 's':
-			tank->posx++;
-			AFFICHAGE_MAT(5,11, tank,tank->posx, tank->posy, 'b');
-			break;
+				deplacer_tank(tank, 'S');
+				break;
 			case 'd':
-			tank->posy++;
-			AFFICHAGE_MAT(4,12, tank,tank->posx, tank->posy, 'd');
-			break;
+				deplacer_tank(tank, 'E');
+				break;
 			case 'q':
-			tank->posy--;
-			AFFICHAGE_MAT(4,12, tank,tank->posx, tank->posy, 'g');
+				deplacer_tank(tank, 'O');
+				break;
+			case ' ':
+			//tirer_obus();
 			break;
 		}
 	}
