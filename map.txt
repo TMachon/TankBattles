@@ -1,0 +1,47 @@
+1_____________________________________________________________________________________________________________________________________________________________________________________2
+|                                                                                                                                                                                     |
+|                                                                                                                                                                                     |
+|                                                                                                                                                                                     |
+|                                                                                                                                                                                     |
+|                                                                                                                                                                                     |
+|                         HHHHHHHHHHHH            HHHHHHHHHHHHHHHHHH                 HHHHHHHHHH                 HHHHHHHHHHHHHHHHHH            HHHHHHHHHHHH                            |
+|                         HHHHHHHHHHHH            HHHHHHHHHHHHHHHHHH                 HDDDDDDDDH                 HHHHHHHHHHHHHHHHHH            HHHHHHHHHHHH                            |
+|                         HHHHHHHHHHHH            HHHHHHHHHHHHHHHHHH                 HDDDDDDDDH                 HHHHHHHHHHHHHHHHHH            HHHHHHHHHHHH                            |
+|                         HHHHHHHHHHHH            HHHHHHHHHHHHHHHHHH                 HDDDDDDDDH                 HHHHHHHHHHHHHHHHHH            HHHHHHHHHHHH                            |
+|HHHHHHHHH                                              HHHHHH                       HDDDDDDDDH                       HHHHHH                                                 HHHHHHHHH|
+|HHHHHHHHH                                              HHHHHH                       HDDDDDDDDH                       HHHHHH                                                 HHHHHHHHH|
+|HHHHHHHHH                                              HHHHHH                       HHHHHHHHHH                       HHHHHH                                                 HHHHHHHHH|
+|HHHHHHHHH                                                                                                                                                                   HHHHHHHHH|
+|HHHHHHHHH                                                                                                                                                                   HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD                                                                                                        DDDDDDDDDDDDDDDDD              HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD                                                                                                        DDDDDDDDDDDDDDDDD              HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD                                                                                                        DDDDDDDDDDDDDDDDD              HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HHHHHHHH                                  HHHHHHHH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HDDDDDDH                                  HDDDDDDH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HDDDDDDH                                  HDDDDDDH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HDDDDDDH                                  HDDDDDDH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HDDDDDDH                                  HDDDDDDH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD               HHHHHHHHHHHHHDDDDDDH                                  HDDDDDDHHHHHHHHHHHHH               DDDDDDDDDDDDDDDDD              HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD               HDDDDDDDDDDDDDDDDDDH            HHHHHHHHHH            HDDDDDDDDDDDDDDDDDDH               DDDDDDDDDDDDDDDDD              HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD               HHHHHHHHHHHHHDDDDDDH            HDDDDDDDDH            HDDDDDDHHHHHHHHHHHHH               DDDDDDDDDDDDDDDDD              HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HDDDDDDH            HDDDDDDDDH            HDDDDDDH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HDDDDDDH            HDDDDDDDDH            HDDDDDDH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HDDDDDDH            HDDDDDDDDH            HDDDDDDH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HDDDDDDH            HDDDDDDDDH            HDDDDDDH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           HHHHHHHH            HHHHHHHHHH            HHHHHHHH                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD                                                                                                        DDDDDDDDDDDDDDDD               HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD                                                                                                        DDDDDDDDDDDDDDDD               HHHHHHHHH|
+|HHHHHHHHH            DDDDDDDDDDDDDDDD                                                                                                        DDDDDDDDDDDDDDDD               HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                                                                                                        HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                                                                                                        HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           DDDDDDD                                    DDDDDDD                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                           DDDDDDD                                    DDDDDDD                           HHHHHHHHHHHH                   HHHHHHHHH|
+|HHHHHHHHH                HHHHHHHHHHHH                 DDDDDDDDDDDDDDDDD                                    DDDDDDDDDDDDDDDDD                 HHHHHHHHHHHH                   HHHHHHHHH|
+|                                                      DDDDDDDDDDDDDDDDD                                    DDDDDDDDDDDDDDDDD                                                         |
+|                                                      DDDDDDD                   HHHHHHHHHHHHHHHHHH                   DDDDDDD                                                         |
+|                                                      DDDDDDD                   H                H                   DDDDDDD                                                         |
+|                                                                                H       T        H                                                                                   |
+|                                                                                H                H                                                                                   |
+|                                                                                H                H                                                                                   |
+|                                                                                H                H                                                                                   |
+4________________________________________________________________________________H________________H___________________________________________________________________________________3
