@@ -6,6 +6,9 @@
 
 #include "fichier.c"
 
+#define NBl 5
+#define NBc 9
+
 typedef struct tank tank;
 struct tank
 {
@@ -116,14 +119,14 @@ void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
 	return 0;
 }
 
-void AFFICHAGE_MAT(int NB_L, int NB_C, tank* tank, int posx, int posy)
+void AFFICHAGE_MAT(int nbL, int nbC, tank* tank, int posx, int posy)
 {//Affichage matrice
 	int i, j;
 
 	//system("clear");
-	for (i=0; i<NB_L; i++)
+	for (i=0; i<nbL; i++)
 	{
-		for(j=0;j<NB_C;j++) {
+		for(j=0;j<nbC;j++) {
 			curseur(1+posx+i, 1+posy+j);
 			if(tank->Direction == 'N')
 				fill_car(tank->carrosserie_h[i][j]);
@@ -138,14 +141,14 @@ void AFFICHAGE_MAT(int NB_L, int NB_C, tank* tank, int posx, int posy)
 	}
 }
 
-void effacer_tank(int NB_L, int NB_C, tank* tank, int posx, int posy)
+void effacer_tank(int nbL, int nbC, tank* tank, int posx, int posy)
 {//Affichage matrice
 	int i, j;
 
 	//system("clear");
-	for (i=0; i<NB_L; i++)
+	for (i=0; i<nbL; i++)
 	{
-		for(j=0;j<NB_C;j++) {
+		for(j=0;j<nbC;j++) {
 			curseur(1+posx+i, 1+posy+j);
 			if(tank->Direction == 'N')
 				fill_car('0');
@@ -161,40 +164,32 @@ void effacer_tank(int NB_L, int NB_C, tank* tank, int posx, int posy)
 }
 
 void deplacer_tank(tank* tank, char dir) {
-	int i, j, NB_L, NB_C;
+	int i, j;
 
 	switch(dir) {
 		case 'N':
-			NB_L=5;
-			NB_C=10;
-			effacer_tank(NB_L, NB_C, tank, tank->posx, tank->posy);
+			effacer_tank(NBl, NBc, tank, tank->posx, tank->posy);
 			tank->Direction = dir;
 			tank->posx--;
-			AFFICHAGE_MAT(NB_L, NB_C, tank, tank->posx, tank->posy);
+			AFFICHAGE_MAT(NBl, NBc, tank, tank->posx, tank->posy);
 			break;
 		case 'S':
-			NB_L=5;
-			NB_C=11;
-			effacer_tank(NB_L, NB_C, tank, tank->posx, tank->posy);
+			effacer_tank(NBl, NBc, tank, tank->posx, tank->posy);
 			tank->Direction = dir;
 			tank->posx++;
-			AFFICHAGE_MAT(NB_L, NB_C, tank,tank->posx, tank->posy);
+			AFFICHAGE_MAT(NBl, NBc, tank,tank->posx, tank->posy);
 			break;
 		case 'E':
-			NB_L=4;
-			NB_C=12;
-			effacer_tank(NB_L, NB_C, tank, tank->posx, tank->posy);
+			effacer_tank(NBl, NBc, tank, tank->posx, tank->posy);
 			tank->Direction = dir;
 			tank->posy++;
-			AFFICHAGE_MAT(NB_L, NB_C, tank,tank->posx, tank->posy);
+			AFFICHAGE_MAT(NBl, NBc, tank,tank->posx, tank->posy);
 			break;
 		case 'O':
-			NB_L=4;
-			NB_C=12;
-			effacer_tank(NB_L, NB_C, tank, tank->posx, tank->posy);
+			effacer_tank(NBl, NBc, tank, tank->posx, tank->posy);
 			tank->Direction = dir;
 			tank->posy--;
-			AFFICHAGE_MAT(NB_L, NB_C, tank,tank->posx, tank->posy);
+			AFFICHAGE_MAT(NBl, NBc, tank,tank->posx, tank->posy);
 			break;
 	}
 
