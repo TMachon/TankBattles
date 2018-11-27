@@ -7,6 +7,9 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#define NB_L_MAP 48
+#define NB_C_MAP 184
+
 #include "tank.c"
 #include "map.c"
 
@@ -28,22 +31,25 @@ char key_pressed()
 
 int main(int argc, char ** argv)
 {
+	system("clear");
+	system("setterm -cursor off");
+	system("stty -echo");
+
 	char c;
 	char i ;
-	FILE*file = NULL;
+	FILE * file = NULL;
 
-	char **map = ALLOCATION_MAT_DYN(47, 184);
+	char ** map = ALLOCATION_MAT_DYN(NB_L_MAP, NB_C_MAP);
 	struct tank * tank = malloc(sizeof(tank));
 	tank->posx = 10;
-	tank->posy = 10;
+	tank->posy = 3;
 
 
 	file = fopen("map.txt", "r+");
 
-	system("clear");
 	if(file != NULL){
-		remplir_matrice(47, 184, map, file);
-		affiche_map(47, 184, map);
+		remplir_matrice(NB_L_MAP, NB_C_MAP, map, file);
+		affiche_map(NB_L_MAP, NB_C_MAP, map);
 
 		fclose(file);
 	}
@@ -54,20 +60,36 @@ int main(int argc, char ** argv)
 	while(1){
 
 		i = key_pressed();
+		int passage = 0;
 
-		switch(i){
-
-			case 'z':
-				deplacer_tank(tank, 'N');
+		//affichage infos
+		curseur(50, 0);
+		printf("%d %d %c", tank->posx, tank->posy, map[tank->posy][tank->posx]);
+		
+		switch(i) {
+			case 'z': ;
+				for (int j=0; j<NB_C_TANK; j++) {
+					if (map[tank->posy-1][tank->posx+j] != ' ') passage++;
+				}
+				if (passage == 0) deplacer_tank(tank, 'N');
 				break;
 			case 's':
-				deplacer_tank(tank, 'S');
+				for (int j=0; j<NB_C_TANK; j++) {
+					if (map[tank->posy+NB_L_TANK][tank->posx+j] != ' ') passage++;
+				}
+				if (passage == 0)deplacer_tank(tank, 'S');
 				break;
 			case 'd':
-				deplacer_tank(tank, 'E');
+				for (int j=0; j<NB_L_TANK; j++) {
+					if (map[tank->posy+j][tank->posx+NB_C_TANK] != ' ') passage++;
+				}
+				if (passage == 0)deplacer_tank(tank, 'E');
 				break;
 			case 'q':
-				deplacer_tank(tank, 'O');
+				for (int j=0; j<NB_L_TANK; j++) {
+					if (map[tank->posy+j][tank->posx-1] != ' ') passage++;
+				}
+				if (passage == 0)deplacer_tank(tank, 'O');
 				break;
 			case ' ':
 			//tirer_obus();

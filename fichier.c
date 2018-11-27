@@ -39,13 +39,10 @@ void fill_car(char c) {
 
 void remplir_matrice(int NB_L, int NB_C, char **mat, FILE *file){
 	int i, j;
-	char vide;
 
 	for(i=0; i<NB_L; i++){
 		for(j=0; j<NB_C; j++){
 			fscanf(file, "%c", &mat[i][j]);
 		}
-		fscanf(file, "%c", &vide);
 	}
-
 }

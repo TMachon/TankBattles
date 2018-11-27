@@ -6,8 +6,8 @@
 
 #include "fichier.c"
 
-#define NBl 5
-#define NBc 9
+#define NB_L_TANK 5
+#define NB_C_TANK 9
 
 typedef struct tank tank;
 struct tank
@@ -19,10 +19,10 @@ struct tank
 	(0 => rien, 1 => blindé, 2 => ultra-blindé)*/
 	int Blindage_orig; /*Blindage d’origine*/
 	int Touches; /*Nombre de fois que le tank est touché*/
-	char carrosserie_h [5][10];
-	char carrosserie_b [5][11];
-	char carrosserie_d [4][12];
-	char carrosserie_g [5][12];/*Carrosserie du tank, servira pour
+	char carrosserie_h [NB_L_TANK][NB_C_TANK];
+	char carrosserie_b [NB_L_TANK][NB_C_TANK];
+	char carrosserie_d [NB_L_TANK][NB_C_TANK];
+	char carrosserie_g [NB_L_TANK][NB_C_TANK];/*Carrosserie du tank, servira pour
 	l’affichage du tank à tout moment*/
 	char Type; /*’M’ => mon tank, ’E’ => tank ennemi*/
 	int Etat; /*État du tank 1 => actif, 2 => en destruction,
@@ -119,15 +119,15 @@ void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
 	return 0;
 }
 
-void AFFICHAGE_MAT(int nbL, int nbC, tank* tank, int posx, int posy)
+void AFFICHAGE_MAT(tank* tank)
 {//Affichage matrice
 	int i, j;
 
 	//system("clear");
-	for (i=0; i<nbL; i++)
+	for (i=0; i<NB_L_TANK; i++)
 	{
-		for(j=0;j<nbC;j++) {
-			curseur(1+posx+i, 1+posy+j);
+		for(j=0;j<NB_C_TANK;j++) {
+			curseur(1+tank->posy+i, 1+tank->posx+j);
 			if(tank->Direction == 'N')
 				fill_car(tank->carrosserie_h[i][j]);
 			if(tank->Direction == 'S')
@@ -137,19 +137,18 @@ void AFFICHAGE_MAT(int nbL, int nbC, tank* tank, int posx, int posy)
 			if(tank->Direction == 'O')
 				fill_car(tank->carrosserie_g[i][j]);       
 		}
-		
 	}
 }
 
-void effacer_tank(int nbL, int nbC, tank* tank, int posx, int posy)
+void effacer_tank(tank* tank)
 {//Affichage matrice
 	int i, j;
 
 	//system("clear");
-	for (i=0; i<nbL; i++)
+	for (i=0; i<NB_L_TANK; i++)
 	{
-		for(j=0;j<nbC;j++) {
-			curseur(1+posx+i, 1+posy+j);
+		for(j=0;j<NB_C_TANK;j++) {
+			curseur(1+tank->posy+i, 1+tank->posx+j);
 			if(tank->Direction == 'N')
 				fill_car('0');
 			if(tank->Direction == 'S')
@@ -168,29 +167,28 @@ void deplacer_tank(tank* tank, char dir) {
 
 	switch(dir) {
 		case 'N':
-			effacer_tank(NBl, NBc, tank, tank->posx, tank->posy);
-			tank->Direction = dir;
-			tank->posx--;
-			AFFICHAGE_MAT(NBl, NBc, tank, tank->posx, tank->posy);
-			break;
-		case 'S':
-			effacer_tank(NBl, NBc, tank, tank->posx, tank->posy);
-			tank->Direction = dir;
-			tank->posx++;
-			AFFICHAGE_MAT(NBl, NBc, tank,tank->posx, tank->posy);
-			break;
-		case 'E':
-			effacer_tank(NBl, NBc, tank, tank->posx, tank->posy);
-			tank->Direction = dir;
-			tank->posy++;
-			AFFICHAGE_MAT(NBl, NBc, tank,tank->posx, tank->posy);
-			break;
-		case 'O':
-			effacer_tank(NBl, NBc, tank, tank->posx, tank->posy);
+			effacer_tank(tank);
 			tank->Direction = dir;
 			tank->posy--;
-			AFFICHAGE_MAT(NBl, NBc, tank,tank->posx, tank->posy);
+			AFFICHAGE_MAT(tank);
+			break;
+		case 'S':
+			effacer_tank(tank);
+			tank->Direction = dir;
+			tank->posy++;
+			AFFICHAGE_MAT(tank);
+			break;
+		case 'E':
+			effacer_tank(tank);
+			tank->Direction = dir;
+			tank->posx++;
+			AFFICHAGE_MAT(tank);
+			break;
+		case 'O':
+			effacer_tank(tank);
+			tank->Direction = dir;
+			tank->posx--;
+			AFFICHAGE_MAT(tank);
 			break;
 	}
-
 }
