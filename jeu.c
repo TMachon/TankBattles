@@ -29,22 +29,15 @@ char key_pressed()
 	return result;
 }
 
-int main(int argc, char ** argv)
+int main(int argc, char** argv)
 {
 	system("clear");
 	system("setterm -cursor off");
 	system("stty -echo");
-
-	char i ;
+	
 	FILE * file = NULL;
-
-	char ** map = ALLOCATION_MAT_DYN(NB_L_MAP, NB_C_MAP);
-	struct tank * tank = malloc(sizeof(tank));
-	tank->posx = 10;
-	tank->posy = 3;
-
-
 	file = fopen("map.txt", "r+");
+	char ** map = ALLOCATION_MAT_DYN(NB_L_MAP, NB_C_MAP);
 
 	if(file != NULL){
 		remplir_matrice(NB_L_MAP, NB_C_MAP, map, file);
@@ -52,10 +45,13 @@ int main(int argc, char ** argv)
 
 		fclose(file);
 	}
+
+	struct tank* tank_joueur = malloc(sizeof(tank));
+	tank_init(tank_joueur);
 	
-	CHARGEMENT_MAT(tank);
+	CHARGEMENT_MAT(tank_joueur);
 	
-	
+	char i ;
 	while(1){
 
 		i = key_pressed();
@@ -63,36 +59,36 @@ int main(int argc, char ** argv)
 
 		//affichage infos
 		curseur(50, 0);
-		printf("%d %d %c", tank->posx, tank->posy, map[tank->posy][tank->posx]);
+		printf("%d %d %c", tank_joueur->posx, tank_joueur->posy, map[tank_joueur->posy][tank_joueur->posx]);
 		
 		switch(i) {
 			case 'z':
-				tourner_tank(tank, 'N');
+				tourner_tank(tank_joueur, 'N');
 				for (int j=0; j<NB_C_TANK; j++) {
-					if (map[tank->posy-1][tank->posx+j] != ' ') passage++;
+					if (map[tank_joueur->posy-1][tank_joueur->posx+j] != ' ') passage++;
 				}
-				if (passage == 0) deplacer_tank(tank, 'N');
+				if (passage == 0) deplacer_tank(tank_joueur, 'N');
 				break;
 			case 's':
-				tourner_tank(tank, 'S');
+				tourner_tank(tank_joueur, 'S');
 				for (int j=0; j<NB_C_TANK; j++) {
-					if (map[tank->posy+NB_L_TANK][tank->posx+j] != ' ') passage++;
+					if (map[tank_joueur->posy+NB_L_TANK][tank_joueur->posx+j] != ' ') passage++;
 				}
-				if (passage == 0)deplacer_tank(tank, 'S');
+				if (passage == 0)deplacer_tank(tank_joueur, 'S');
 				break;
 			case 'd':
-				tourner_tank(tank, 'E');
+				tourner_tank(tank_joueur, 'E');
 				for (int j=0; j<NB_L_TANK; j++) {
-					if (map[tank->posy+j][tank->posx+NB_C_TANK] != ' ') passage++;
+					if (map[tank_joueur->posy+j][tank_joueur->posx+NB_C_TANK] != ' ') passage++;
 				}
-				if (passage == 0)deplacer_tank(tank, 'E');
+				if (passage == 0)deplacer_tank(tank_joueur, 'E');
 				break;
 			case 'q':
-				tourner_tank(tank, 'O');
+				tourner_tank(tank_joueur, 'O');
 				for (int j=0; j<NB_L_TANK; j++) {
-					if (map[tank->posy+j][tank->posx-1] != ' ') passage++;
+					if (map[tank_joueur->posy+j][tank_joueur->posx-1] != ' ') passage++;
 				}
-				if (passage == 0)deplacer_tank(tank, 'O');
+				if (passage == 0)deplacer_tank(tank_joueur, 'O');
 				break;
 			case 'f':
 				system("setterm -cursor on");

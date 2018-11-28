@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include <unistd.h>
 
-void affiche_map(int NB_L, int NB_C, char **mat){
+void affiche_map(int NB_L, int NB_C, char** mat){
 	int i, j;
 	
 	for(i=0; i<NB_L; i++){

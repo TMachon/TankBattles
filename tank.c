@@ -29,11 +29,11 @@ struct tank
 	3 => inactif*/
 	int Mise_a_jour; /*utile pour la suppression du tank en tenant
 	compte d’un delay*/
-	struct tank * NXT; /*Pointeur vers un prochain tank*/
+	struct tank* NXT; /*Pointeur vers un prochain tank*/
 	/*Vous pouvez rajouter d’autres variables si nécessaire */
 };
 
-void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
+void **CHARGEMENT_MAT (tank* tank_var) //Chargement matrice
 {
 	int i, j, fd1, 	k, fd2, fd3, fd4;
 	char c;
@@ -48,7 +48,7 @@ void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
 		k = read(fd1, &c, 1);
 		if(k<1) break;
 		if(k==EOF) break;
-		tank->carrosserie_h[i][j] = c;
+		tank_var->carrosserie_h[i][j] = c;
 		j++;
 		if(c=='\n'){
 			i++;
@@ -67,7 +67,7 @@ void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
 		k = read(fd2, &c, 1);
 		if(k<1) break;
 		if(k==EOF) break;
-		tank->carrosserie_b[i][j] = c;
+		tank_var->carrosserie_b[i][j] = c;
 		j++;
 		//printf("%c", c);
 		if(c=='\n'){
@@ -87,7 +87,7 @@ void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
 		k = read(fd3, &c, 1);
 		if(k<1) break;
 		if(k==EOF) break;
-		tank->carrosserie_g[i][j] = c;
+		tank_var->carrosserie_g[i][j] = c;
 		j++;
 		//printf("%c", c);
 		if(c=='\n'){
@@ -107,7 +107,7 @@ void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
 		k = read(fd4, &c, 1);
 		if(k<1) break;
 		if(k==EOF) break;
-		tank->carrosserie_d[i][j] = c;
+		tank_var->carrosserie_d[i][j] = c;
 		j++;
 		//printf("%c", c);
 		if(c=='\n'){
@@ -118,8 +118,12 @@ void **CHARGEMENT_MAT (tank* tank) //Chargement matrice
 	close(fd4);   
 	return 0;
 }
+void tank_init(tank* tank_var) {
+	tank_var->posx = 5;
+	tank_var->posy = 5;
+}
 
-void AFFICHAGE_MAT(tank* tank)
+void afficher_tank(tank* tank_var)
 {//Affichage matrice
 	int i, j;
 
@@ -127,20 +131,20 @@ void AFFICHAGE_MAT(tank* tank)
 	for (i=0; i<NB_L_TANK; i++)
 	{
 		for(j=0;j<NB_C_TANK;j++) {
-			curseur(1+tank->posy+i, 1+tank->posx+j);
-			if(tank->Direction == 'N')
-				fill_car(tank->carrosserie_h[i][j]);
-			if(tank->Direction == 'S')
-				fill_car(tank->carrosserie_b[i][j]);
-			if(tank->Direction == 'E')
-				fill_car(tank->carrosserie_d[i][j]);
-			if(tank->Direction == 'O')
-				fill_car(tank->carrosserie_g[i][j]);       
+			curseur(1+tank_var->posy+i, 1+tank_var->posx+j);
+			if(tank_var->Direction == 'N')
+				fill_car(tank_var->carrosserie_h[i][j]);
+			if(tank_var->Direction == 'S')
+				fill_car(tank_var->carrosserie_b[i][j]);
+			if(tank_var->Direction == 'E')
+				fill_car(tank_var->carrosserie_d[i][j]);
+			if(tank_var->Direction == 'O')
+				fill_car(tank_var->carrosserie_g[i][j]);       
 		}
 	}
 }
 
-void effacer_tank(tank* tank)
+void effacer_tank(tank* tank_var)
 {//Affichage matrice
 	int i, j;
 
@@ -148,47 +152,47 @@ void effacer_tank(tank* tank)
 	for (i=0; i<NB_L_TANK; i++)
 	{
 		for(j=0;j<NB_C_TANK;j++) {
-			curseur(1+tank->posy+i, 1+tank->posx+j);
-			if(tank->Direction == 'N')
+			curseur(1+tank_var->posy+i, 1+tank_var->posx+j);
+			if(tank_var->Direction == 'N')
 				fill_car('0');
-			if(tank->Direction == 'S')
+			if(tank_var->Direction == 'S')
 				fill_car('0');
-			if(tank->Direction == 'E')
+			if(tank_var->Direction == 'E')
 				fill_car('0');
-			if(tank->Direction == 'O')
+			if(tank_var->Direction == 'O')
 				fill_car('0');   
 		}
 		
 	}
 }
 
-void deplacer_tank(tank* tank, char dir) {
+void deplacer_tank(tank* tank_var, char dir) {
 	switch(dir) {
 		case 'N':
-			effacer_tank(tank);
-			tank->posy--;
-			AFFICHAGE_MAT(tank);
+			effacer_tank(tank_var);
+			tank_var->posy--;
+			afficher_tank(tank_var);
 			break;
 		case 'S':
-			effacer_tank(tank);
-			tank->posy++;
-			AFFICHAGE_MAT(tank);
+			effacer_tank(tank_var);
+			tank_var->posy++;
+			afficher_tank(tank_var);
 			break;
 		case 'E':
-			effacer_tank(tank);
-			tank->posx++;
-			AFFICHAGE_MAT(tank);
+			effacer_tank(tank_var);
+			tank_var->posx++;
+			afficher_tank(tank_var);
 			break;
 		case 'O':
-			effacer_tank(tank);
-			tank->posx--;
-			AFFICHAGE_MAT(tank);
+			effacer_tank(tank_var);
+			tank_var->posx--;
+			afficher_tank(tank_var);
 			break;
 	}
 }
 
-void tourner_tank(tank * tank, char dir) {
-	effacer_tank(tank);
-	tank->Direction = dir;
-	AFFICHAGE_MAT(tank);
+void tourner_tank(tank* tank_var, char dir) {
+	effacer_tank(tank_var);
+	tank_var->Direction = dir;
+	afficher_tank(tank_var);
 }

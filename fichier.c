@@ -8,7 +8,7 @@
 char** ALLOCATION_MAT_DYN(int NB_L, int NB_C) //Allocation dynamique de mémoire à la matrice
 {
 	int i;
-	char ** mat=NULL;
+	char** mat=NULL;
 
 	mat = malloc(NB_L*sizeof(char*));
 	for (i=0; i<NB_L; i++)
@@ -37,7 +37,7 @@ void fill_car(char c) {
 
 
 
-void remplir_matrice(int NB_L, int NB_C, char **mat, FILE *file){
+void remplir_matrice(int NB_L, int NB_C, char** mat, FILE* file){
 	int i, j;
 
 	for(i=0; i<NB_L; i++){
