@@ -35,7 +35,6 @@ int main(int argc, char ** argv)
 	system("setterm -cursor off");
 	system("stty -echo");
 
-	char c;
 	char i ;
 	FILE * file = NULL;
 
@@ -67,30 +66,38 @@ int main(int argc, char ** argv)
 		printf("%d %d %c", tank->posx, tank->posy, map[tank->posy][tank->posx]);
 		
 		switch(i) {
-			case 'z': ;
+			case 'z':
+				tourner_tank(tank, 'N');
 				for (int j=0; j<NB_C_TANK; j++) {
 					if (map[tank->posy-1][tank->posx+j] != ' ') passage++;
 				}
 				if (passage == 0) deplacer_tank(tank, 'N');
 				break;
 			case 's':
+				tourner_tank(tank, 'S');
 				for (int j=0; j<NB_C_TANK; j++) {
 					if (map[tank->posy+NB_L_TANK][tank->posx+j] != ' ') passage++;
 				}
 				if (passage == 0)deplacer_tank(tank, 'S');
 				break;
 			case 'd':
+				tourner_tank(tank, 'E');
 				for (int j=0; j<NB_L_TANK; j++) {
 					if (map[tank->posy+j][tank->posx+NB_C_TANK] != ' ') passage++;
 				}
 				if (passage == 0)deplacer_tank(tank, 'E');
 				break;
 			case 'q':
+				tourner_tank(tank, 'O');
 				for (int j=0; j<NB_L_TANK; j++) {
 					if (map[tank->posy+j][tank->posx-1] != ' ') passage++;
 				}
 				if (passage == 0)deplacer_tank(tank, 'O');
 				break;
+			case 'f':
+				system("setterm -cursor on");
+				system("stty echo");
+				exit(0);
 			case ' ':
 			//tirer_obus();
 			break;

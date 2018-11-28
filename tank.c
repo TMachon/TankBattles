@@ -163,32 +163,32 @@ void effacer_tank(tank* tank)
 }
 
 void deplacer_tank(tank* tank, char dir) {
-	int i, j;
-
 	switch(dir) {
 		case 'N':
 			effacer_tank(tank);
-			tank->Direction = dir;
 			tank->posy--;
 			AFFICHAGE_MAT(tank);
 			break;
 		case 'S':
 			effacer_tank(tank);
-			tank->Direction = dir;
 			tank->posy++;
 			AFFICHAGE_MAT(tank);
 			break;
 		case 'E':
 			effacer_tank(tank);
-			tank->Direction = dir;
 			tank->posx++;
 			AFFICHAGE_MAT(tank);
 			break;
 		case 'O':
 			effacer_tank(tank);
-			tank->Direction = dir;
 			tank->posx--;
 			AFFICHAGE_MAT(tank);
 			break;
 	}
+}
+
+void tourner_tank(tank * tank, char dir) {
+	effacer_tank(tank);
+	tank->Direction = dir;
+	AFFICHAGE_MAT(tank);
 }
