@@ -10,5 +10,5 @@ struct obus
 };
 
 void initier_obus(obus* obus_var, tank* tank_var);
-void definir_emplcement_obus(obus* obus_var);
+void definir_emplacement_obus(obus* obus_var);
 void tirer_obus(obus* obus_var);

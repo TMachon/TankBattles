@@ -89,9 +89,9 @@ int main(int argc, char** argv) {
 		// affichage position
 		if (jeu_lancee == 1) {
 			curseur(50, 0);
-			printf("       ");
+			printf("               ");
 			curseur(50, 0);
-			printf("%d %d ", tank_joueur->posx, tank_joueur->posy);
+			printf("%d %d - %d %d", tank_joueur->posx, tank_joueur->posy, obus1->posx, obus1->posy);
 		}
 		
 		switch(i) {
