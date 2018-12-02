@@ -6,11 +6,13 @@
 #include<stdlib.h>
 #include <unistd.h>
 
-void affiche_map(int NB_L, int NB_C, char** mat){
+// Permet d'afficher la map
+void affiche_map(int nb_l, int nb_c, char** mat){
+	
 	int i, j;
 	
-	for(i=0; i<NB_L; i++){
-		for(j=0; j<NB_C; j++){
+	for(i=0; i<nb_l; i++){
+		for(j=0; j<nb_c; j++){
 			printf("%c", *(*(mat + i)+j));
 		}
 	}

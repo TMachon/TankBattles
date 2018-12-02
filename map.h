@@ -1,2 +1,2 @@
 
-void affiche_map(int NB_L, int NB_C, char** mat);
+void affiche_map(int nb_l, int nb_c, char** mat);

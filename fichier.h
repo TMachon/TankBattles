@@ -1,4 +1,4 @@
 
-char** ALLOCATION_MAT_DYN(int NB_L, int NB_C);
+char** allocation_mat_dyn(int nb_l, int nb_c);
 void fill_car(char c);
-void remplir_matrice(int NB_L, int NB_C, char** mat, FILE* file);
+void remplir_matrice(int nb_l, int nb_c, char** mat, FILE* file);

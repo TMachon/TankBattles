@@ -16,7 +16,7 @@
 
 char** map;
 
-// fonction qui gere la perssions des touches du clavier
+// Fonction qui gere la perssions des touches du clavier
 char key_pressed() {
 	struct termios oldterm, newterm;
 	int oldfd; char c, result = 0;
@@ -32,15 +32,17 @@ char key_pressed() {
 	return result;
 }
 
+// Fontion qui permet de quitter le jeu
 void quitter() {
 	system("setterm -cursor on");
 	system("stty echo");
 	exit(0);
 }
 
-// fonction qui fait tourner le jeu
+// Fonction qui fait tourner le jeu
 int main(int argc, char** argv) {
-	// gestion du terminal
+	
+	//gestion du terminal
 	system("clear");
 	system("setterm -cursor off");
 	system("stty -echo");
@@ -48,8 +50,8 @@ int main(int argc, char** argv) {
 	char i;
 	int jeu_lancee = 0; //faux
 	
-	// gestion menu
-	char ** menu = ALLOCATION_MAT_DYN(NB_L_MAP, NB_C_MAP);
+	//gestion menu
+	char ** menu = allocation_mat_dyn(NB_L_MAP, NB_C_MAP);
 	FILE * file1 = NULL;
 	file1 = fopen("txt/menu.txt", "r+");
 	if(file1 != NULL){
@@ -62,8 +64,8 @@ int main(int argc, char** argv) {
 	}
 	affiche_map(NB_L_MAP, NB_C_MAP, menu);
 	
-	// gestion de la carte
-	map = ALLOCATION_MAT_DYN(NB_L_MAP, NB_C_MAP);
+	//gestion de la carte
+	map = allocation_mat_dyn(NB_L_MAP, NB_C_MAP);
 	FILE * file2 = NULL;
 	file2 = fopen("txt/map.txt", "r+");
 	if(file2 != NULL){
@@ -75,19 +77,21 @@ int main(int argc, char** argv) {
 		exit(1);
 	}
 	
-	// creation du tank du joueur
+	//creation du tank du joueur
 	struct tank* tank_joueur = malloc(sizeof(tank));
 	struct obus* obus1 = malloc(sizeof(obus));
 	initier_tank_joueur(tank_joueur);
 	initier_obus(obus1, tank_joueur);	
 	
+	//boucle principale du jeu, qui attend un input depuis 'key_pressed()'
 	while(1){
 
 		i = key_pressed();
 		int passage = 0;
 		
-		// affichage position
+		//affichage informations
 		if (jeu_lancee == 1) {
+			
 			curseur(50, 0);
 			printf("               ");
 			curseur(50, 0);
@@ -96,11 +100,11 @@ int main(int argc, char** argv) {
 		
 		switch(i) {
 			
-		// pour lancer le jeu
+		//pour lancer le jeu
 		case 'j':
 			if (jeu_lancee == 0) {
 				
-				// afficher de la carte
+				//afficher de la carte
 				system("clear");
 				affiche_map(NB_L_MAP, NB_C_MAP, map);
 				
@@ -108,7 +112,7 @@ int main(int argc, char** argv) {
 			}
 			break;
 			
-		// pour terminer le jeu
+		//pour terminer le jeu
 		case 't':
 			quitter();
 			break;
@@ -121,7 +125,8 @@ int main(int argc, char** argv) {
 		// gestion deplacements du tank joueur
 			
 		case 'z':
-			if (jeu_lancee == 1) {
+			if (jeu_lancee == 1) //si le jeu est lance (qu'on est plus dans le menu)
+			{
 				tourner_tank(tank_joueur, 'N');
 				for (int j=0; j<NB_C_TANK; j++) {
 					if (map[tank_joueur->posy-1][tank_joueur->posx+j] != ' ') passage++;
@@ -131,7 +136,8 @@ int main(int argc, char** argv) {
 			break;
 			
 		case 'q':
-			if (jeu_lancee == 1) {
+			if (jeu_lancee == 1) //si le jeu est lance (qu'on est plus dans le menu)
+			{
 				tourner_tank(tank_joueur, 'O');
 				for (int j=0; j<NB_L_TANK; j++) {
 					if (map[tank_joueur->posy+j][tank_joueur->posx-1] != ' ') passage++;
@@ -141,7 +147,8 @@ int main(int argc, char** argv) {
 			break;
 			
 		case 's':
-			if (jeu_lancee == 1) {
+			if (jeu_lancee == 1) //si le jeu est lance (qu'on est plus dans le menu)
+			{
 				tourner_tank(tank_joueur, 'S');
 				for (int j=0; j<NB_C_TANK; j++) {
 					if (map[tank_joueur->posy+NB_L_TANK][tank_joueur->posx+j] != ' ') passage++;
@@ -151,7 +158,8 @@ int main(int argc, char** argv) {
 			break;
 			
 		case 'd':
-			if (jeu_lancee == 1) {
+			if (jeu_lancee == 1) //si le jeu est lance (qu'on est plus dans le menu) 
+			{
 				tourner_tank(tank_joueur, 'E');
 				for (int j=0; j<NB_L_TANK; j++) {
 					if (map[tank_joueur->posy+j][tank_joueur->posx+NB_C_TANK] != ' ') passage++;

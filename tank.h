@@ -26,5 +26,5 @@ void initier_tank_joueur(tank* tank_var);
 void initier_tank_ennemi(tank* tank_var, char direction, int pos_x, int pos_y, int blindage);
 void afficher_tank(tank* tank_var);
 void effacer_tank(tank* tank_var);
-void deplacer_tank(tank* tank_var, char dir);
 void tourner_tank(tank* tank_var, char dir);
+void deplacer_tank(tank* tank_var, char dir);

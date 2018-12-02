@@ -9,7 +9,7 @@
 
 #include "fichier.c"
 
-// fonction pour charger les matrices de carrosserie
+// Fonction pour charger les matrices de carrosserie
 void charger_carrosserie(tank* tank_var)
 {
 	int i, j, fd1, 	k, fd2, fd3, fd4;
@@ -52,7 +52,6 @@ void charger_carrosserie(tank* tank_var)
 		if(k==EOF) break;
 		tank_var->carrosserie_b[i][j] = c;
 		j++;
-		//printf("%c", c);
 		if(c=='\n'){
 			i++;
 			j=0;
@@ -75,7 +74,6 @@ void charger_carrosserie(tank* tank_var)
 		if(k==EOF) break;
 		tank_var->carrosserie_g[i][j] = c;
 		j++;
-		//printf("%c", c);
 		if(c=='\n'){
 			i++;
 			j=0;
@@ -98,7 +96,6 @@ void charger_carrosserie(tank* tank_var)
 		if(k==EOF) break;
 		tank_var->carrosserie_d[i][j] = c;
 		j++;
-		//printf("%c", c);
 		if(c=='\n'){
 			i++;
 			j=0;
@@ -107,8 +104,9 @@ void charger_carrosserie(tank* tank_var)
 	close(fd4);
 }
 
-// constructeur pour le joueur
+// Constructeur pour le tank joueur
 void initier_tank_joueur(tank* tank_var) {
+	
 	tank_var->Direction = 'E';
 	tank_var->posx = 5;
 	tank_var->posy = 5;
@@ -120,8 +118,9 @@ void initier_tank_joueur(tank* tank_var) {
 	charger_carrosserie(tank_var);
 }
 
-// constructeur pour les ennemis
+// Constructeur pour les tanks ennemis
 void initier_tank_ennemi(tank* tank_var, char direction, int pos_x, int pos_y, int blindage) {
+	
 	tank_var->Direction = direction;
 	tank_var->posx = pos_x;
 	tank_var->posy = pos_y;
@@ -133,7 +132,9 @@ void initier_tank_ennemi(tank* tank_var, char direction, int pos_x, int pos_y, i
 	charger_carrosserie(tank_var);
 }
 
+// Fonction qui s'occupe d'afficher le tank
 void afficher_tank(tank* tank_var) {
+	
 	for (int i=0; i<NB_L_TANK; i++)
 	{
 		for(int j=0;j<NB_C_TANK;j++) {
@@ -150,7 +151,9 @@ void afficher_tank(tank* tank_var) {
 	}
 }
 
+// Fonction qui s'occupe d'effacer le tank
 void effacer_tank(tank* tank_var) {
+	
 	for (int i=0; i<NB_L_TANK; i++)
 	{
 		for(int j=0;j<NB_C_TANK;j++) {
@@ -168,33 +171,41 @@ void effacer_tank(tank* tank_var) {
 	}
 }
 
-void deplacer_tank(tank* tank_var, char dir) {
-	switch(dir) {
-		case 'N':
-			effacer_tank(tank_var);
-			tank_var->posy--;
-			afficher_tank(tank_var);
-			break;
-		case 'S':
-			effacer_tank(tank_var);
-			tank_var->posy++;
-			afficher_tank(tank_var);
-			break;
-		case 'E':
-			effacer_tank(tank_var);
-			tank_var->posx++;
-			afficher_tank(tank_var);
-			break;
-		case 'O':
-			effacer_tank(tank_var);
-			tank_var->posx--;
-			afficher_tank(tank_var);
-			break;
-	}
-}
-
+// Fonction qui gere la rotation du tank
 void tourner_tank(tank* tank_var, char dir) {
+	
 	effacer_tank(tank_var);
 	tank_var->Direction = dir;
 	afficher_tank(tank_var);
+}
+
+// Fonction qui gere les deplacements d'un tank au sens large
+void deplacer_tank(tank* tank_var, char dir) {
+	
+	switch(dir) {
+		
+	case 'N':
+		effacer_tank(tank_var);
+		tank_var->posy--;
+		afficher_tank(tank_var);
+		break;
+		
+	case 'S':
+		effacer_tank(tank_var);
+		tank_var->posy++;
+		afficher_tank(tank_var);
+		break;
+		
+	case 'E':
+		effacer_tank(tank_var);
+		tank_var->posx++;
+		afficher_tank(tank_var);
+		break;
+		
+	case 'O':
+		effacer_tank(tank_var);
+		tank_var->posx--;
+		afficher_tank(tank_var);
+		break;
+	}
 }
