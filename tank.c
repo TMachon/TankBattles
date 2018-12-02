@@ -5,7 +5,6 @@
 #include <fcntl.h>
 
 #include "fichier.c"
-#include "obus.c"
 
 #define NB_L_TANK 5
 #define NB_C_TANK 9
@@ -16,22 +15,20 @@ struct tank
 	char Direction ; /*N => Nord, S => Sud, E => EST, O => OUEST*/
 	int posx; /*Position courante coin gauche X du tank*/
 	int posy; /*Position courante coin gauche Y du tank*/
-	int Blindage; /*niveau de blindage en cours du tank
-	(0 => rien, 1 => blindé, 2 => ultra-blindé)*/
+	int Blindage; /*niveau de blindage en cours du tank 0 => rien, 1 => blindé, 2 => ultra-blindé)*/
 	int Blindage_orig; /*Blindage d’origine*/
 	int Touches; /*Nombre de fois que le tank est touché*/
+	char Type; /*’j’ => joueur, ’E’ => tank ennemi*/
+	int Etat; /*État du tank 1 => actif, 2 => en destruction, 3 => inactif*/
+	
+	/*Carrosseries du tank, servira pour l’affichage du tank à tout moment*/
 	char carrosserie_h [NB_L_TANK][NB_C_TANK];
 	char carrosserie_b [NB_L_TANK][NB_C_TANK];
 	char carrosserie_d [NB_L_TANK][NB_C_TANK];
-	char carrosserie_g [NB_L_TANK][NB_C_TANK];/*Carrosserie du tank, servira pour
-	l’affichage du tank à tout moment*/
-	char Type; /*’j’ => joueur, ’E’ => tank ennemi*/
-	int Etat; /*État du tank 1 => actif, 2 => en destruction,
-	3 => inactif*/
-	int Mise_a_jour; /*utile pour la suppression du tank en tenant
-	compte d’un delay*/
-	struct tank* NXT; /*Pointeur vers un prochain tank*/
-	/*Vous pouvez rajouter d’autres variables si nécessaire */
+	char carrosserie_g [NB_L_TANK][NB_C_TANK]; 
+	
+	//int Mise_a_jour; /*utile pour la suppression du tank en tenant compte d’un delay*/
+	//struct tank* NXT; /*Pointeur vers un prochain tank*/
 };
 
 // fonction pour charger les matrices de carrosserie
@@ -39,7 +36,10 @@ void charger_carrosserie(tank* tank_var)
 {
 	int i, j, fd1, 	k, fd2, fd3, fd4;
 	char c;
-	fd1 = open("txt/tank_haut.txt", O_RDONLY);
+	
+	char file1[30];
+	snprintf(file1, sizeof(file1), "txt/tank_haut_%d.txt", tank_var->Blindage);
+	fd1 = open("txt/tank_haut_0.txt", O_RDONLY);
 	if(fd1==-1) {
 		perror("open");
 		exit(-1);
@@ -58,7 +58,10 @@ void charger_carrosserie(tank* tank_var)
 		}
 	}
 	close(fd1);
-	fd2 = open("txt/tank_bas.txt", O_RDONLY);
+	
+	char file2[30];
+	snprintf(file2, sizeof(file2), "txt/tank_bas_%d.txt", tank_var->Blindage);
+	fd2 = open("txt/tank_bas_0.txt", O_RDONLY);
 	if(fd2==-1) {
 		perror("open");
 		exit(-1);
@@ -78,7 +81,10 @@ void charger_carrosserie(tank* tank_var)
 		}
 	}
 	close(fd2);
-	fd3 = open("txt/tank_gauche.txt", O_RDONLY);
+	
+	char file3[30];
+	snprintf(file3, sizeof(file3), "txt/tank_gauche_%d.txt", tank_var->Blindage);
+	fd3 = open("txt/tank_gauche_0.txt", O_RDONLY);
 	if(fd3==-1) {
 		perror("open");
 		exit(-1);
@@ -98,7 +104,10 @@ void charger_carrosserie(tank* tank_var)
 		}
 	}
 	close(fd3);
-	fd4 = open("txt/tank_droit.txt", O_RDONLY);
+	
+	char file4[30];
+	snprintf(file4, sizeof(file4), "txt/tank_droit_%d.txt", tank_var->Blindage);
+	fd4 = open("txt/tank_droit_0.txt", O_RDONLY);
 	if(fd4==-1) {
 		perror("open");
 		exit(-1);

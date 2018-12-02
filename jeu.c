@@ -11,6 +11,7 @@
 #define NB_C_MAP 184
 
 #include "tank.c"
+#include "obus.c"
 #include "map.c"
 
 // fonction qui gere la perssions des touches du clavier
@@ -76,6 +77,7 @@ int main(int argc, char** argv)
 	
 	// creation du tank du joueur
 	struct tank* tank_joueur = malloc(sizeof(tank));
+	struct obus* obus1 = malloc(sizeof(obus));
 	initier_tank_joueur(tank_joueur);
 	
 	
@@ -92,11 +94,10 @@ int main(int argc, char** argv)
 			printf("%d %d ", tank_joueur->posx, tank_joueur->posy);
 		}
 		
-		
 		switch(i) {
 			
-			// pour lancer le jeu
-			case 'j':
+		// pour lancer le jeu
+		case 'j':
 			if (jeu_lancee == 0) {
 				
 				// afficher de la carte
@@ -107,14 +108,20 @@ int main(int argc, char** argv)
 			}
 			break;
 			
-			// pour terminer le jeu
-			case 't':
+		// pour terminer le jeu
+		case 't':
 			quitter();
 			break;
 			
-			// gestion deplacements du tank joueur
+		// pour tirer un obus
+		case ' ':
+			initier_obus(obus1, tank_joueur);
+			tirer_obus(obus1, map);
+			break;
 			
-			case 'z':
+		// gestion deplacements du tank joueur
+			
+		case 'z':
 			if (jeu_lancee == 1) {
 				tourner_tank(tank_joueur, 'N');
 				for (int j=0; j<NB_C_TANK; j++) {
@@ -124,7 +131,7 @@ int main(int argc, char** argv)
 			}
 			break;
 			
-			case 'q':
+		case 'q':
 			if (jeu_lancee == 1) {
 				tourner_tank(tank_joueur, 'O');
 				for (int j=0; j<NB_L_TANK; j++) {
@@ -134,7 +141,7 @@ int main(int argc, char** argv)
 			}
 			break;
 			
-			case 's':
+		case 's':
 			if (jeu_lancee == 1) {
 				tourner_tank(tank_joueur, 'S');
 				for (int j=0; j<NB_C_TANK; j++) {
@@ -144,7 +151,7 @@ int main(int argc, char** argv)
 			}
 			break;
 			
-			case 'd':
+		case 'd':
 			if (jeu_lancee == 1) {
 				tourner_tank(tank_joueur, 'E');
 				for (int j=0; j<NB_L_TANK; j++) {
@@ -152,11 +159,6 @@ int main(int argc, char** argv)
 				}
 				if (passage == 0)deplacer_tank(tank_joueur, 'E');
 			}
-			break;
-			
-			// pour tirer un obus
-			case ' ':
-			//tirer_obus();
 			break;
 		}
 	}
