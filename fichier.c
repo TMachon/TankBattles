@@ -1,9 +1,10 @@
 
+#include "fichier.h"
+#include "variables_globales.h"
+
 #include<stdio.h>
 #include<stdlib.h>
 #include <unistd.h>
-
-#define curseur(x,y)  printf("\033[%d;%dH", (x),(y));
 
 char** ALLOCATION_MAT_DYN(int NB_L, int NB_C) //Allocation dynamique de mémoire à la matrice
 {

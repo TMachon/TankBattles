@@ -1,4 +1,7 @@
 
+#include "jeu.h"
+#include "variables_globales.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -7,16 +10,14 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#define NB_L_MAP 48
-#define NB_C_MAP 184
-
 #include "tank.c"
 #include "obus.c"
 #include "map.c"
 
+char** map;
+
 // fonction qui gere la perssions des touches du clavier
-char key_pressed()
-{
+char key_pressed() {
 	struct termios oldterm, newterm;
 	int oldfd; char c, result = 0;
 	tcgetattr (STDIN_FILENO, &oldterm);
@@ -38,8 +39,7 @@ void quitter() {
 }
 
 // fonction qui fait tourner le jeu
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv) {
 	// gestion du terminal
 	system("clear");
 	system("setterm -cursor off");
@@ -63,7 +63,7 @@ int main(int argc, char** argv)
 	affiche_map(NB_L_MAP, NB_C_MAP, menu);
 	
 	// gestion de la carte
-	char ** map = ALLOCATION_MAT_DYN(NB_L_MAP, NB_C_MAP);
+	map = ALLOCATION_MAT_DYN(NB_L_MAP, NB_C_MAP);
 	FILE * file2 = NULL;
 	file2 = fopen("txt/map.txt", "r+");
 	if(file2 != NULL){
@@ -79,7 +79,7 @@ int main(int argc, char** argv)
 	struct tank* tank_joueur = malloc(sizeof(tank));
 	struct obus* obus1 = malloc(sizeof(obus));
 	initier_tank_joueur(tank_joueur);
-	
+	initier_obus(obus1, tank_joueur);	
 	
 	while(1){
 
@@ -115,8 +115,7 @@ int main(int argc, char** argv)
 			
 		// pour tirer un obus
 		case ' ':
-			initier_obus(obus1, tank_joueur);
-			tirer_obus(obus1, map);
+			tirer_obus(obus1);
 			break;
 			
 		// gestion deplacements du tank joueur

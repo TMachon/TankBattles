@@ -1,35 +1,13 @@
 
+#include "tank.h"
+#include "variables_globales.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 
 #include "fichier.c"
-
-#define NB_L_TANK 5
-#define NB_C_TANK 9
-
-typedef struct tank tank;
-struct tank
-{
-	char Direction ; /*N => Nord, S => Sud, E => EST, O => OUEST*/
-	int posx; /*Position courante coin gauche X du tank*/
-	int posy; /*Position courante coin gauche Y du tank*/
-	int Blindage; /*niveau de blindage en cours du tank 0 => rien, 1 => blindé, 2 => ultra-blindé)*/
-	int Blindage_orig; /*Blindage d’origine*/
-	int Touches; /*Nombre de fois que le tank est touché*/
-	char Type; /*’j’ => joueur, ’E’ => tank ennemi*/
-	int Etat; /*État du tank 1 => actif, 2 => en destruction, 3 => inactif*/
-	
-	/*Carrosseries du tank, servira pour l’affichage du tank à tout moment*/
-	char carrosserie_h [NB_L_TANK][NB_C_TANK];
-	char carrosserie_b [NB_L_TANK][NB_C_TANK];
-	char carrosserie_d [NB_L_TANK][NB_C_TANK];
-	char carrosserie_g [NB_L_TANK][NB_C_TANK]; 
-	
-	//int Mise_a_jour; /*utile pour la suppression du tank en tenant compte d’un delay*/
-	//struct tank* NXT; /*Pointeur vers un prochain tank*/
-};
 
 // fonction pour charger les matrices de carrosserie
 void charger_carrosserie(tank* tank_var)
